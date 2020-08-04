@@ -1,0 +1,8 @@
+.TodoItem{
+    font-size: 25px;
+    padding: 10px;
+}
+.TodoItem-Completed{
+    text-decoration: line-through;
+    opacity: .3;
+}
