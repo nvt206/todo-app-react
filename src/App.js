@@ -1,9 +1,6 @@
-import React, { Component } from 'react';
-import './App.css'
-
-
-import Demo from './components/Demo'
-import TodoItem from './components/TodoItem';
+import React, { Component } from "react";
+import "./App.css";
+import TodoItem from "./components/TodoItem";
 class App extends Component {
   constructor() {
     super();
@@ -19,34 +16,34 @@ class App extends Component {
   }
 
   onItemClicked(index) {
-    return (event) => {
+    return event => {
       this.setState(() => {
-        return{
-          todos: this.state.todos.map((todo,i) => {
-            return i===index
-                  ?{...todo,isComplete:!todo.isComplete}
-                  :{...todo}
+        return {
+          todos: this.state.todos.map((todo, i) => {
+            return i === index
+              ? { ...todo, isComplete: !todo.isComplete }
+              : { ...todo };
           })
-        }
+        };
       });
-    }
+    };
   }
 
   render() {
     const { todos } = this.state;
     return (
       <div className="App">
-        {
-          todos.length > 0
-            ? todos.map((todo, index) => {
-              return <TodoItem
-                key={index}
-                todo={todo}
-                itemClick={this.onItemClicked(index)}
-              />
+        {todos.length > 0
+          ? todos.map((todo, index) => {
+              return (
+                <TodoItem
+                  key={index}
+                  todo={todo}
+                  itemClick={this.onItemClicked(index)}
+                />
+              );
             })
-            : 'Nothing'
-        }
+          : "Nothing here"}
       </div>
     );
   }
