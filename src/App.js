@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import './App.css'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+import Demo from './components/Demo'
+import TodoItem from './components/TodoItem';
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      todos: [
+        { title: "Go to market", isComplete: true },
+        { title: "Go to school", isComplete: false },
+        { title: "Go home" },
+        { title: "Go Go" }
+      ],
+      hi: [1, 2, 3, 4, 5]
+    };
+  }
+
+  onItemClicked(index) {
+    return (event) => {
+      this.setState(() => {
+        return{
+          todos: this.state.todos.map((todo,i) => {
+            return i===index
+                  ?{...todo,isComplete:!todo.isComplete}
+                  :{...todo}
+          })
+        }
+      });
+    }
+  }
+
+  render() {
+    const { todos } = this.state;
+    return (
+      <div className="App">
+        {
+          todos.length > 0
+            ? todos.map((todo, index) => {
+              return <TodoItem
+                key={index}
+                todo={todo}
+                itemClick={this.onItemClicked(index)}
+              />
+            })
+            : 'Nothing'
+        }
+      </div>
+    );
+  }
 }
 
 export default App;
