@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './App.css'
 import checkDone from './images/checkDone.svg'
-
-
-import Demo from './components/Demo'
 import TodoItem from './components/TodoItem';
 class App extends Component {
   constructor() {
@@ -63,8 +60,7 @@ class App extends Component {
                 itemClick={this.onItemClicked(index)}
               />
             })
-            : 'Nothing'
-        }
+          : "Nothing here"}
       </div>
     );
   }
