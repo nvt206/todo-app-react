@@ -42,14 +42,23 @@ class App extends Component {
     localStorage.setItem('todos',JSON.stringify(data));
     this.setState({});
   }
+  onItemDelete(index){
+    return (event)=>{
+      const data = JSON.parse(localStorage.getItem('todos'));
+      data.splice(index,1);
+      localStorage.setItem('todos',JSON.stringify(data));
+      this.setState({});
+    }
+  }
 
   render() {
     const todos= JSON.parse(localStorage.getItem("todos"));
     return (
       <div className="App">
+        <h2>Todo App React</h2>
         <div className="todo-header">
           <img title="Selected all" src={checkDone} onClick={this.onCheckAll}/>
-          <input className="todo-input" type="text" onKeyUp={this.onEnterUp}/>
+          <input className="todo-input" type="text" onKeyUp={this.onEnterUp} placeholder="Enter new work"/>
         </div>
         {
           todos.length > 0
@@ -57,7 +66,8 @@ class App extends Component {
               return <TodoItem
                 key={index}
                 todo={todo}
-                itemClick={this.onItemClicked(index)}
+                checkboxClick={this.onItemClicked(index)}
+                deleteClick ={this.onItemDelete(index)}
               />
             })
           : "Nothing here"}
