@@ -1,6 +1,15 @@
 .TodoItem{
     font-size: 25px;
     padding: 10px;
+    display: flex;
+    align-items: center;
+}
+.TodoItem>img{
+    width: 32px;
+    height: 32px;
+}
+.TodoItem>p{
+    margin-left: 20px;
 }
 .TodoItem-Completed{
     text-decoration: line-through;
